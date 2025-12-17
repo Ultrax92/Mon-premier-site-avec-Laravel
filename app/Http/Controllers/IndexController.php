@@ -3,17 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Article;
+use App\Models\Animal;
 
 class IndexController extends Controller
 {
     public function index()
     {
-        $articles = Article::all();
+        $animals = Animal::all();
 
-        return view('welcome', [
-            'name' => 'Wyona',
-            'articles' => $articles
-        ]);
+        return view('welcome', ['animals' => $animals]);
     }
 }

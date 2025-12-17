@@ -1,20 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
-use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\AnimalController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class, 'index'])->name('home');
 
-Route::prefix('articles')->group(function () {
-    
-    Route::get('/{id}', [ArticleController::class, 'show'])->name('article.details')->whereNumber('id');
-
-    Route::get('/creer', [ArticleController::class, 'create']);
-    Route::get('/modifier/{id}', [ArticleController::class, 'edit']);
-    Route::get('/supprimer/{id}', [ArticleController::class, 'delete']);
-});
-
-Route::fallback(function () {
-    return view('errors.not-found');
-});
+// Routes pour les animaux
+Route::get('/animal/create', [AnimalController::class, 'create'])->name('animal.create');
+Route::get('/animal/{id}', [AnimalController::class, 'show'])->name('animal.show')->whereNumber('id');
+Route::get('/animal/{id}/update', [AnimalController::class, 'update'])->name('animal.update');
+Route::get('/animal/{id}/delete', [AnimalController::class, 'delete'])->name('animal.delete');

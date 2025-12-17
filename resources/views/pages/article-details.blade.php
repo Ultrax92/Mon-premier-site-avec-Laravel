@@ -1,9 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Détails de l\'article ' . $id)
+@section('title', $article->title)
 
 @section('content')
-    <h2>Article portant l’identifiant {{ $id }}</h2>
+    <x-article 
+        :title="$article->title" 
+        :description="$article->description" 
+    />
     
-    <p>Ici se trouvera bientôt le contenu de l'article.</p>
+    <br>
+    <a href="{{ route('home') }}">Retour aux articles</a>
 @endsection

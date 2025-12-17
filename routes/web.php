@@ -6,7 +6,14 @@ use App\Http\Controllers\ArticleController;
 
 Route::get('/', [IndexController::class, 'index'])->name('home');
 
-Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('article.details');
+Route::prefix('articles')->group(function () {
+    
+    Route::get('/{id}', [ArticleController::class, 'show'])->name('article.details')->whereNumber('id');
+
+    Route::get('/creer', [ArticleController::class, 'create']);
+    Route::get('/modifier/{id}', [ArticleController::class, 'edit']);
+    Route::get('/supprimer/{id}', [ArticleController::class, 'delete']);
+});
 
 Route::fallback(function () {
     return view('errors.not-found');

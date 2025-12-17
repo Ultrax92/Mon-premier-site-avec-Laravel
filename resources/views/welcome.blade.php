@@ -9,17 +9,15 @@
 <br>
 
 <div class="articles-list">
-
     @foreach ($articles as $article)
+    @if ($loop->last) @break @endif
 
-    @if ($loop->last)
-    @break
-    @endif
+    <a href="{{ route('article.details', $article->id) }}" style="text-decoration: none; color: inherit;">
+        <x-article
+            :title="$article->title"
+            :description="$article->description" />
+    </a>
 
-    <x-article
-        :title="$article['title']"
-        :description="$article['description']" />
     @endforeach
-
 </div>
 @endsection
